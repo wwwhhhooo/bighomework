@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>mw0.png</file>
+        <file>1x/TDF.png</file>
+        <file>1x/begButton.png</file>
+        <file>TDF.png</file>
+        <file>enemy.png</file>
+    </qresource>
+    <qresource prefix="/sound">
+        <file>battle.mp3</file>
+        <file>PVP.mp3</file>
+        <file>maintown.mp3</file>
+    </qresource>
+</RCC>
