@@ -1,133 +1,137 @@
-#include "firstbarrier.h"
-#include "ui_firstbarrier.h"
-#include<iostream>
-#include<QMessageBox>
-#include<cmath>
+#include "secondbarrier.h"
+#include "ui_secondbarrier.h"
 
-
-FirstBarrier::FirstBarrier(QWidget *parent) :
+SecondBarrier::SecondBarrier(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::FirstBarrier)
+    ui(new Ui::SecondBarrier)
 {
     ui->setupUi(this);
-    this->_game1.initWorld();
-
-
+    this->game2.initWorld();
     timerEP=startTimer(10000);
     timerEM=startTimer(100);
     timer0=startTimer(20);
     timerFire=startTimer(DTower::getFirerate());
     timerbu=startTimer(300);
-
 }
 
-FirstBarrier::~FirstBarrier()
+SecondBarrier::~SecondBarrier()
 {
     delete ui;
-}
 
-void FirstBarrier::showWay(QPainter *p){
-    p->setPen(QPen(Qt::black));
-    int x1,y1,x2,y2;
-    x1=(this->_game1.getPos()[0].getPosX());
-    x2=this->_game1.getPos()[3].getPosX()+towerPosition::getWidth();
-    y1=(this->_game1.getPos()[0].getPosY()+towerPosition::getHeight()+this->_game1.getPos()[4].getPosY())/2;
-    y2=(this->_game1.getPos()[3].getPosY()+towerPosition::getHeight()+this->_game1.getPos()[7].getPosY())/2;
-    p->drawLine(x1,y1,x2,y2);
+
 }
-void FirstBarrier::drawWave(QPainter *p){
+void SecondBarrier::showWay(QPainter *p){
+    p->setPen(QPen(Qt::black));
+    int x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6;
+    x1=this->game2.getPos()[0].getPosX()-50;
+    y1=this->game2.getPos()[0].getPosY()+towerPosition::getHeight()+30;
+    x2=this->game2.getPos()[2].getPosX();
+    y2=y1;
+    x3=x2;
+    y3=y1+120;
+    x4=x1;
+    y4=y3;
+    x5=x4;
+    y5=y4+120;
+    x6=x2;
+    y6=y5;
+    p->drawLine(x1,y1,x2,y2);
+    p->drawLine(x2,y2,x3,y3);
+    p->drawLine(x3,y3,x4,y4);
+    p->drawLine(x4,y4,x5,y5);
+    p->drawLine(x5,y5,x6,y6);
+}
+void SecondBarrier::drawWave(QPainter *p){
     p->setPen(QPen(Qt::red));
     p->drawText(QRect(400,5,100,25),QString("WAVE:%1").arg(Enemy::getProduce()));
 }
-void FirstBarrier::drawDollar(QPainter *p){
+void SecondBarrier::drawDollar(QPainter *p){
     p->setPen(QPen(Qt::red));
     p->drawText(QRect(30,5,100,25),QString("DOLLAR:%1").arg(Player::Getdollar()));
 }
-void FirstBarrier::drawDiamond(QPainter *p){
+void SecondBarrier::drawDiamond(QPainter *p){
     p->setPen(QPen(Qt::red));
     p->drawText(QRect(200,5,150,25),QString("DIAMOND:%1").arg(Player::Getdiamond()));
 }
-void FirstBarrier::paintEvent(QPaintEvent *e){
+void SecondBarrier::paintEvent(QPaintEvent *e){
     QPainter*pa;
     pa=new QPainter();
     pa->begin(this);
     this->drawWave(pa);
     this->drawDiamond(pa);
     this->drawDollar(pa);
-    this->_game1.show(pa);
     this->showWay(pa);
-    foreach (DTower tow, tower) {
+    this->game2.show(pa);
+    foreach(DTower tow,tower){
         tow.show(pa);
-
     }
-    foreach(Enemy *emy,enemy){
+    foreach(EnemyX*emy,enemy){
         emy->enemyShow(pa);
     }
-    foreach(Bullet*bl,bul){
-        bl->show(pa);
+    foreach(Bullet*b,bul){
+        b->show(pa);
     }
     pa->end();
     delete pa;
 }
-void FirstBarrier::mousePressEvent(QMouseEvent *e){
+void SecondBarrier::mousePressEvent(QMouseEvent *e){
     int x=e->pos().x();
     int y=e->pos().y();
-    int n=this->_game1.getPos().size();
+    int n=game2.getPos().size();
     for(int i=0;i<n;i++){
-        if(DTower::canBuy() && this->_game1.getPos()[i].containmouse(x,y) && this->_game1.getPos()[i].canPlace()){
-            this->_game1.getPos()[i].setTower();
+        if(DTower::canBuy() && this->game2.getPos()[i].containmouse(x,y) && this->game2.getPos()[i].canPlace()){
+            this->game2.getPos()[i].setTower();
             int cx,cy;
-            cx=this->_game1.getPos()[i].getPosX();
-            cy=this->_game1.getPos()[i].getPosY();
+            cx=this->game2.getPos()[i].getPosX();
+            cy=this->game2.getPos()[i].getPosY();
             DTower tow(cx,cy);
             this->tower.push_back(tow);
-
             update();
             break;
         }
     }
 }
-void FirstBarrier::EnemyProduce(){
+
+void SecondBarrier::EnemyProduce(){
     int x,y;
-    x=this->_game1.getPos()[3].getPosX()+towerPosition::getWidth();
-    y=this->_game1.getPos()[3].getPosY()+towerPosition::getHeight()+15;
-    Enemy *emy=new Enemy;
-    emy->set(x,y);
-    this->enemy.push_back(emy);
+    x=this->game2.getPos()[0].getPosX()-50;
+    y=this->game2.getPos()[0].getPosY()+towerPosition::getHeight()+10;
+    EnemyX*enm=new EnemyX;
+    enm->set(x,y);
+    enemy.push_back(enm);
     update();
 }
-void FirstBarrier::EnemyMove(){
-    foreach (Enemy *em, enemy) {
-        em->move();
+void SecondBarrier::EnemyMove(){
+    foreach(EnemyX*emy,enemy){
+        emy->move();
     }
     update();
 }
-void FirstBarrier::timerEvent(QTimerEvent *event){
+void SecondBarrier::timerEvent(QTimerEvent *event){
     if(event->timerId()==timerEP){
         this->EnemyProduce();
-        if(Enemy::getProduce()==5){
+        if(EnemyX::getProduce()==10){
             killTimer(timerEP);
         }
     }
     if(event->timerId()==timerEM){
         this->EnemyMove();
-
     }
     if(event->timerId()==timer0){
         this->loseOrWin();
-        if(islose()){
+        if(this->islose()){
             killTimer(timer0);
         }
-        if(Enemy::getProduce()==5&&Enemy::getCount()==0){
+        if(Enemy::getProduce()==10&&Enemy::getCount()==0){
             killTimer(timer0);
         }
     }
     if(event->timerId()==timerFire){
         foreach (DTower tow,tower) {
-               foreach (Enemy*em, enemy) {
+               foreach (EnemyX*em, enemy) {
                   int x=tow.getx()+towerPosition::getWidth()/2;
                   int y=tow.gety()+towerPosition::getHeight()/2;
-                  double d=sqrt((1.0*x-em->getX())*(x-em->getX())+(1.0*y-em->getY())*(y-em->getY()));
+                  double d=sqrt((1.0*x-em->getX()-25)*(x-em->getX()-25)+(1.0*y-em->getY()-25)*(y-em->getY()-25));
                   if(d<tow.getRange()/2){
                       em->onAttack();
                       Bullet*b=new Bullet(x,y,em->getX(),em->getY());
@@ -137,7 +141,7 @@ void FirstBarrier::timerEvent(QTimerEvent *event){
                   }
                }
            }
-        vector<Enemy*>::iterator it;
+        vector<EnemyX*>::iterator it;
         it=enemy.begin();
         while(it!=enemy.end()){
             if((*it)->die()){
@@ -149,6 +153,8 @@ void FirstBarrier::timerEvent(QTimerEvent *event){
                 it++;
         }
     }
+
+
     if(event->timerId()==timerbu){
         foreach (Bullet*bl, bul) {
            bl->move();
@@ -161,29 +167,41 @@ void FirstBarrier::timerEvent(QTimerEvent *event){
                 delete (*it);
                 it=bul.erase(it);
             }
+            else it++;
         }
     }
-
 }
-void FirstBarrier::loseOrWin(){
-    if(Enemy::getProduce()==5&&Enemy::getCount()==0){
+
+void SecondBarrier::loseOrWin(){
+    if(Enemy::getProduce()==10&&Enemy::getCount()==0){
         DialogWin*dialog1=new DialogWin;
         this->hide();
         dialog1->show();
     }
-    if(islose()){
+    if(this->islose()){
         DialogLose*dialog2=new DialogLose;
         this->hide();
         dialog2->show();
     }
 }
-bool FirstBarrier::islose(){
-    foreach(Enemy*em,enemy){
-        if(em->getX()<100)
+bool SecondBarrier::islose(){
+    foreach(EnemyX*emy,enemy){
+        if(emy->getX()>705&&emy->getY()>=400){
             return true;
+        }
     }
     return false;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

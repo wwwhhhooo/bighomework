@@ -3,10 +3,10 @@
 using namespace std;
 int towerPosition::height=50;
 int towerPosition::width=50;
-towerPosition::towerPosition(int x, int y, bool hastower){
+towerPosition::towerPosition(int x, int y, bool canplace){
     this->_posX=x;
     this->_posY=y;
-    this->_hasTower=hastower;
+    this->_canplace=canplace;
 
 }
 void towerPosition::show(QPainter *pa){

@@ -9,9 +9,9 @@
 class towerPosition
 {
 public:
-    towerPosition(int x,int y, bool hastower=false);
-    bool canPlace() const {return this->_hasTower;}
-    void setTower(){this->_hasTower=true;}
+    towerPosition(int x,int y, bool canplace=true);
+    bool canPlace() const {return _canplace;}
+    void setTower(){this->_canplace=false;}
     void show(QPainter*pa);
     bool containmouse(int x,int y);
     int getPosX()const{return this->_posX;}
@@ -20,7 +20,7 @@ public:
     static int getWidth(){return width;}
 private:
     int _posX,_posY;
-    bool _hasTower;
+    bool _canplace;
     static int height,width;
     QPixmap _image;
 };

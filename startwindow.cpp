@@ -1,5 +1,6 @@
 #include "startwindow.h"
 #include "ui_startwindow.h"
+#include"secondbarrier.h"
 
 StartWindow::StartWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,4 +29,11 @@ void StartWindow::on_start_clicked()
     w1->show();
     this->hide();
 
+}
+
+void StartWindow::on_start2_clicked()
+{
+    SecondBarrier*w2=new SecondBarrier;
+    w2->show();
+    this->hide();
 }

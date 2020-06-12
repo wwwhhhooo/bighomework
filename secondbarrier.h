@@ -1,8 +1,8 @@
-#ifndef FIRSTBARRIER_H
-#define FIRSTBARRIER_H
+#ifndef SECONDBARRIER_H
+#define SECONDBARRIER_H
 
 #include <QMainWindow>
-#include"world1.h"
+#include"world2.h"
 #include"towerposition.h"
 #include"dtower.h"
 #include<iostream>
@@ -11,23 +11,23 @@
 #include<QMouseEvent>
 #include<QTimerEvent>
 #include<QTimer>
-#include"enemy.h"
 #include"player.h"
 #include"dialogwin.h"
 #include"dialoglose.h"
-
+#include"enemyx.h"
+#include<vector>
 
 namespace Ui {
-class FirstBarrier;
+class SecondBarrier;
 }
 
-class FirstBarrier : public QMainWindow
+class SecondBarrier : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit FirstBarrier(QWidget *parent = 0);
-    ~FirstBarrier();
+    explicit SecondBarrier(QWidget *parent = 0);
+    ~SecondBarrier();
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent*e);
     void showWay(QPainter*p);
@@ -43,11 +43,12 @@ public:
 private slots:
     void timerEvent(QTimerEvent *event);
 
+
 private:
-    Ui::FirstBarrier *ui;
-    World1 _game1;
+    Ui::SecondBarrier *ui;
+    World2 game2;
     vector<DTower> tower;
-    vector<Enemy*> enemy;
+    vector<EnemyX*> enemy;
     vector<Bullet*> bul;
     int timerEP;//计时敌人的产生
     int timerEM;//计时敌人的移动
@@ -56,4 +57,4 @@ private:
     int timerbu;//子弹移动速率
 };
 
-#endif // FIRSTBARRIER_H
+#endif // SECONDBARRIER_H

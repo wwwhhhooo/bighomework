@@ -34,7 +34,12 @@ SOURCES += \
     world1.cpp \
     player.cpp \
     enemy.cpp \
-    bullet.cpp
+    bullet.cpp \
+    dialogwin.cpp \
+    dialoglose.cpp \
+    secondbarrier.cpp \
+    world2.cpp \
+    enemyx.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,12 +50,20 @@ HEADERS += \
     world1.h \
     player.h \
     enemy.h \
-    bullet.h
+    bullet.h \
+    dialogwin.h \
+    dialoglose.h \
+    secondbarrier.h \
+    world2.h \
+    enemyx.h
 
 FORMS += \
         mainwindow.ui \
     startwindow.ui \
-    firstbarrier.ui
+    firstbarrier.ui \
+    dialogwin.ui \
+    dialoglose.ui \
+    secondbarrier.ui
 
 RESOURCES += \
     neededresource.qrc

@@ -1,6 +1,7 @@
 #include "dtower.h"
+#include"player.h"
 int DTower::_cost=500;
-int DTower::_attack=500;
+int DTower::_attack=300;
 int DTower::_firerate=1000/*ms*/;
 DTower::DTower(int x, int y, int cb, int mb,  int range)
 {
@@ -9,6 +10,7 @@ DTower::DTower(int x, int y, int cb, int mb,  int range)
     this->_currentBlood=cb;
     this->_maxBlood=mb;
     this->_range=range;
+    Player::dollarMinus();
 }
 bool DTower::canBuy(){
     if(Player::Getdollar()>=_cost)

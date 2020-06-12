@@ -22,10 +22,6 @@ public:
     ~MainWindow();
    StartWindow*w0;
 
-
-signals:
-   void mysignal1();
-
 private slots:
 
     void on_Begin_released();

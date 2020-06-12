@@ -2,19 +2,20 @@
 #include<iostream>
 #include<QMediaPlayer>
 
+
 World1::World1()
 {
 
 }
-void World1::initWorld1(){
+void World1::initWorld(){
     towerPosition pos1(100,100);
-    towerPosition pos2(160,100);
-    towerPosition pos3(220,100);
-    towerPosition pos4(280,100);
+    towerPosition pos2(250,100);
+    towerPosition pos3(400,100);
+    towerPosition pos4(550,100);
     towerPosition pos5(100,220);
-    towerPosition pos6(160,220);
-    towerPosition pos7(220,220);
-    towerPosition pos8(280,220);
+    towerPosition pos6(250,220);
+    towerPosition pos7(400,220);
+    towerPosition pos8(550,220);
     this->pos.push_back(pos1);
     this->pos.push_back(pos2);
     this->pos.push_back(pos3);
