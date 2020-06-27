@@ -7,9 +7,9 @@ class Bullet
 public:
     Bullet(int sx, int sy,int ex,int ey,bool hasmove=false);
     void move();
-    void show(QPainter*pa);
-    bool ifmove(){return this->_hasmove;}
-private:
+    virtual void show(QPainter*pa);
+    bool ifmove()const {return this->_hasmove;}
+protected:
     int _sx,_sy,_ex,_ey,dx,dy;
     bool _hasmove;
 };

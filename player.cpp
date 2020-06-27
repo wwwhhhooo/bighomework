@@ -17,3 +17,9 @@ void Player::dollarPlus(){
 void Player::diamondPlus(){
     _diamond+=Enemy::getdiamond();
 }
+void Player::diamondMinus(){
+    _diamond-=600;
+}
+void Player::sell(){
+    _dollar+=250;
+}

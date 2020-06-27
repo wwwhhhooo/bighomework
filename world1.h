@@ -13,11 +13,12 @@ class World1
 {
 public:
     World1();
+    virtual ~World1();
     virtual void initWorld();
     void show(QPainter*painter);
-    vector<towerPosition> getPos()const {return this->pos;}
+    vector<towerPosition*> getPos()const {return this->pos;}
 protected:
-    vector<towerPosition> pos;
+    vector<towerPosition*> pos;
 
 };
 

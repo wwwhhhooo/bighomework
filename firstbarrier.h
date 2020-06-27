@@ -39,6 +39,7 @@ public:
     void loseOrWin();
     bool islose();
     void choseEnemy();
+    void mouseDoubleClickEvent(QMouseEvent*e);
 
 private slots:
     void timerEvent(QTimerEvent *event);
@@ -46,9 +47,11 @@ private slots:
 private:
     Ui::FirstBarrier *ui;
     World1 _game1;
-    vector<DTower> tower;
+    vector<DTower*> tower;
     vector<Enemy*> enemy;
     vector<Bullet*> bul;
+    DialogWin*dialog1;
+    DialogLose*dialog2;
     int timerEP;//计时敌人的产生
     int timerEM;//计时敌人的移动
     int timer0;//每20ms检测一下游戏输赢

@@ -39,7 +39,8 @@ SOURCES += \
     dialoglose.cpp \
     secondbarrier.cpp \
     world2.cpp \
-    enemyx.cpp
+    enemyz.cpp \
+    emybullet.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +56,8 @@ HEADERS += \
     dialoglose.h \
     secondbarrier.h \
     world2.h \
-    enemyx.h
+    enemyz.h \
+    emybullet.h
 
 FORMS += \
         mainwindow.ui \

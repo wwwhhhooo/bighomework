@@ -10,6 +10,7 @@ class World2 : public World1
 {
 public:
     World2();
+    ~World2();
     void initWorld();
 };
 

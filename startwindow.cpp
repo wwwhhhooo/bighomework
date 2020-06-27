@@ -25,15 +25,15 @@ void StartWindow::closeEvent(QCloseEvent *event){
 
 void StartWindow::on_start_clicked()
 {
-    FirstBarrier*w1=new FirstBarrier;
-    w1->show();
+    this->w1=new FirstBarrier;
+    this->w1->show();
     this->hide();
 
 }
 
 void StartWindow::on_start2_clicked()
 {
-    SecondBarrier*w2=new SecondBarrier;
-    w2->show();
+    this->w2=new SecondBarrier;
+    this->w2->show();
     this->hide();
 }

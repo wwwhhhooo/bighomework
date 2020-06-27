@@ -12,6 +12,7 @@ public:
     towerPosition(int x,int y, bool canplace=true);
     bool canPlace() const {return _canplace;}
     void setTower(){this->_canplace=false;}
+    void reset(){this->_canplace=true;}
     void show(QPainter*pa);
     bool containmouse(int x,int y);
     int getPosX()const{return this->_posX;}

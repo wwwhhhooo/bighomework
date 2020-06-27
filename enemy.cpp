@@ -11,7 +11,9 @@ Enemy::Enemy()
     enemyProduce++;
 }
 void Enemy::enemyShow(QPainter *pa){
-    this->e_image.load(":/image/enemy.png");
+    pa->setPen(QPen(Qt::red));
+    pa->drawText(QRect(this->e_posx-15,this->e_posy-20,100,20),QString("%1/%2").arg(this->_blood).arg(this->mblood));
+    this->e_image.load(":/image/enemy.jpg");
     pa->drawPixmap(this->e_posx,this->e_posy,50,50,this->e_image);
 }
 void Enemy::move(){
@@ -21,11 +23,10 @@ void Enemy::set(int x, int y, int blood){
     this->e_posx=x;
     this->e_posy=y;
     this->_blood=blood;
-
-
+    this->mblood=blood;
 }
-void Enemy::onAttack(){
-    this->_blood-=DTower::getAttack();
+void Enemy::onAttack(int attack){
+    this->_blood-=attack;
 }
 bool Enemy::die(){
     if(this->_blood<=0){

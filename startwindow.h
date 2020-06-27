@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include"firstbarrier.h"
+#include"secondbarrier.h"
 
 namespace Ui {
 class StartWindow;
@@ -27,6 +28,8 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
 private:
     Ui::StartWindow *ui;
+    FirstBarrier*w1;
+    SecondBarrier*w2;
 
 };
 #endif // STARTWINDOW_H

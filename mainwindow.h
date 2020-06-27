@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-   StartWindow*w0;
+
 
 private slots:
 
@@ -29,7 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
+    StartWindow*w0;
 
 };
 

@@ -5,6 +5,12 @@
         <file>1x/begButton.png</file>
         <file>TDF.png</file>
         <file>enemy.png</file>
+        <file>enemy.jpg</file>
+        <file>enemyx.jpg</file>
+        <file>enemyz.jpg</file>
+        <file>tower.jpg</file>
+        <file>towerx.jpg</file>
+        <file>Towerz.jpg</file>
     </qresource>
     <qresource prefix="/sound">
         <file>battle.mp3</file>

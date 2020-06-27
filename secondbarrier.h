@@ -14,8 +14,9 @@
 #include"player.h"
 #include"dialogwin.h"
 #include"dialoglose.h"
-#include"enemyx.h"
 #include<vector>
+#include"enemyz.h"
+#include"emybullet.h"
 
 namespace Ui {
 class SecondBarrier;
@@ -31,7 +32,7 @@ public:
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent*e);
     void showWay(QPainter*p);
-    void EnemyProduce();
+
     void EnemyMove();
     void drawWave(QPainter*p);
     void drawDollar(QPainter*p);
@@ -39,6 +40,9 @@ public:
     void loseOrWin();
     bool islose();
     void choseEnemy();
+    void mouseDoubleClickEvent(QMouseEvent*e);
+    void EnemyzProduce();
+
 
 private slots:
     void timerEvent(QTimerEvent *event);
@@ -47,10 +51,13 @@ private slots:
 private:
     Ui::SecondBarrier *ui;
     World2 game2;
-    vector<DTower> tower;
-    vector<EnemyX*> enemy;
+    vector<DTower*> tower;
+    vector<Enemy*> enemy;
     vector<Bullet*> bul;
-    int timerEP;//计时敌人的产生
+    vector<EmyBullet*> emybul;
+    DialogWin*dialog1;
+    DialogLose*dialog2;
+    int timerEPz;//计时敌人的产生
     int timerEM;//计时敌人的移动
     int timer0;//每20ms检测一下游戏输赢
     int timerFire;//攻击速率

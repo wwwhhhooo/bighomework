@@ -13,6 +13,7 @@ public:
     static void dollarPlus();
     static void diamondMinus();
     static void diamondPlus();
+    static void sell();
 private:
     static int _dollar,_diamond;
 };
